@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "on-prem-rag-assistant"
+version = "0.1.0"
+description = "Local RAG assistant with FastAPI, Qdrant and Ollama"
+requires-python = ">=3.11"
+dependencies = ["fastapi>=0.110,<1", "httpx>=0.27,<1", "uvicorn>=0.29,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.6,<1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100

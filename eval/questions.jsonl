@@ -1,0 +1,20 @@
+{"question":"Koľko stojí štandardná doprava?","expected_keywords":["4","eur"],"expected_source":"shipping.md","abstain":false}
+{"question":"Kedy je doprava zdarma?","expected_keywords":["80","eur"],"expected_source":"shipping.md","abstain":false}
+{"question":"Koľko trvá štandardné dodanie?","expected_keywords":["2","4","pracovné dni"],"expected_source":"shipping.md","abstain":false}
+{"question":"Kedy odosielate objednávky?","expected_keywords":["pracovné dni"],"expected_source":"shipping.md","abstain":false}
+{"question":"Platí sa za osobný odber?","expected_keywords":["bez poplatku"],"expected_source":"shipping.md","abstain":false}
+{"question":"Aká je lehota na vrátenie produktu?","expected_keywords":["14","dní"],"expected_source":"returns.md","abstain":false}
+{"question":"Kto hradí spätnú dopravu?","expected_keywords":["zákazník"],"expected_source":"returns.md","abstain":false}
+{"question":"Kedy vrátite peniaze?","expected_keywords":["7","pracovných dní"],"expected_source":"returns.md","abstain":false}
+{"question":"Ako požiadam o vrátenie?","expected_keywords":["kontaktný formulár"],"expected_source":"returns.md","abstain":false}
+{"question":"Ako dlho trvá záruka?","expected_keywords":["24","mesiacov"],"expected_source":"warranty.md","abstain":false}
+{"question":"Čo záruka pokrýva?","expected_keywords":["výrobné vady"],"expected_source":"warranty.md","abstain":false}
+{"question":"Ako podám reklamáciu?","expected_keywords":["kontaktný formulár"],"expected_source":"warranty.md","abstain":false}
+{"question":"Aké platobné karty prijímate?","expected_keywords":["Visa","Mastercard"],"expected_source":"payments.md","abstain":false}
+{"question":"Je dostupná dobierka?","expected_keywords":["nie je dostupná"],"expected_source":"payments.md","abstain":false}
+{"question":"Kedy expedujete objednávku pri bankovom prevode?","expected_keywords":["pripísaní platby"],"expected_source":"payments.md","abstain":false}
+{"question":"Koľko stojí expresné doručenie?","expected_keywords":[],"expected_source":null,"abstain":true}
+{"question":"Máte vernostný program?","expected_keywords":[],"expected_source":null,"abstain":true}
+{"question":"Aká je adresa vašej kamennej predajne?","expected_keywords":[],"expected_source":null,"abstain":true}
+{"question":"Predávate poistenie zásielky?","expected_keywords":[],"expected_source":null,"abstain":true}
+{"question":"Aký je telefón na podporu?","expected_keywords":[],"expected_source":null,"abstain":true}

@@ -1,0 +1,1 @@
+"""Small local RAG backend."""
