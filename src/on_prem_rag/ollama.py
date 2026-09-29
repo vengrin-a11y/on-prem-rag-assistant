@@ -27,7 +27,8 @@ class OllamaClient:
         with httpx.Client(timeout=180) as client:
             response = client.post(
                 f"{self.base_url}/api/chat",
-                json={"model": self.chat_model, "stream": False, "format": "json", "options": {"temperature": 0},
+                json={"model": self.chat_model, "stream": False, "format": "json", "think": False,
+                      "options": {"temperature": 0, "num_predict": 256},
                       "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]},
             )
             response.raise_for_status()

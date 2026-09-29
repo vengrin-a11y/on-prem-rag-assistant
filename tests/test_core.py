@@ -5,6 +5,7 @@ import pytest
 from on_prem_rag.chunking import chunk_document
 from on_prem_rag.config import Settings
 from on_prem_rag.document_loader import Document
+from on_prem_rag.ollama import OllamaClient
 from on_prem_rag.pipeline import Pipeline
 from on_prem_rag.qdrant import payload_for
 from on_prem_rag.retrieval import Evidence, parse_hits
@@ -74,3 +75,20 @@ def test_20_evaluation_cases_are_synthetic_and_complete():
     assert len(cases) == 20
     assert sum(case["abstain"] for case in cases) == 5
     assert all(set(case) == {"question", "expected_keywords", "expected_source", "abstain"} for case in cases)
+
+
+def test_ollama_generation_disables_thinking_and_bounds_output(monkeypatch):
+    import httpx
+
+    requests = []
+
+    def handler(request):
+        requests.append(json.loads(request.content))
+        return httpx.Response(200, json={"message": {"content": '{"abstain":true}'}})
+
+    transport = httpx.MockTransport(handler)
+    real_client = httpx.Client
+    monkeypatch.setattr(httpx, "Client", lambda **kwargs: real_client(transport=transport, **kwargs))
+    assert OllamaClient("http://localhost:11434", "embed", "chat").generate("system", "question")
+    assert requests[0]["think"] is False
+    assert requests[0]["options"]["num_predict"] == 256
