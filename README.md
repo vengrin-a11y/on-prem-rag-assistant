@@ -64,7 +64,24 @@ python -m pip install -e '.[dev]'
 python eval/evaluate.py --api http://127.0.0.1:8000
 ```
 
-The runner computes answer correctness by expected keywords, citation correctness by document name, abstention correctness, and average end-to-end latency. Live evaluation not recorded yet. Results depend on the configured local models and retrieval threshold; no accuracy claim is made here.
+The runner computes answer correctness by expected keywords, citation correctness by document name, abstention correctness, and average end-to-end latency. Request failures count as incorrect cases and are reported separately. Use `--details /tmp/rag-eval-details.jsonl` to keep per-question diagnostics outside Git.
+
+### Measured local run
+
+Measured on an owner-controlled local GPU system on 2026-09-29 after ingesting 11 synthetic chunks into a fresh isolated Qdrant collection. Retrieval threshold: `0.35`.
+
+| Metric | Result |
+|---|---:|
+| Questions | 20 |
+| Answer correctness | 20/20 |
+| Citation correctness | 20/20 |
+| Abstention correctness | 5/5 |
+| Request errors | 0 |
+| Average end-to-end latency | 4.98 s |
+
+Runtime models: chat `qwen3.5:9b`; embeddings `qwen3-embedding:8b`.
+
+These numbers describe one local run of the synthetic questions. Correctness is checked against the listed keywords and expected source document; it is not a general benchmark of RAG quality. Results depend on the configured models and runtime load.
 
 ## Tests
 
@@ -86,8 +103,8 @@ Only the synthetic documents are included. The API exposes filenames and excerpt
 
 ## Limitations
 
-The evidence gate checks citations and requires substantive answer tokens to occur in cited excerpts. It is conservative, but it cannot prove full semantic entailment. A vector score threshold alone cannot reliably identify every unanswerable question. Re-ingestion upserts stable points but does not remove chunks that disappeared from the input. No live model evaluation is claimed.
+The evidence gate checks citations and requires substantive answer tokens to occur in cited excerpts. It is conservative, but it cannot prove full semantic entailment. A vector score threshold alone cannot reliably identify every unanswerable question. Re-ingestion upserts stable points but does not remove chunks that disappeared from the input.
 
 ## Roadmap
 
-Run and publish measured local evaluation results, improve semantic verification, and add safe stale-point reconciliation for the dedicated demo collection.
+Improve semantic verification, add safe stale-point reconciliation for the dedicated demo collection, and repeat evaluation across different local models.
